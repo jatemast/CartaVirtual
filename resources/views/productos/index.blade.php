@@ -44,6 +44,12 @@
             transform: scale(1.05);
         }
     </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('categoria').addEventListener('change', fetchProductos);
+        document.getElementById('nombre').addEventListener('input', fetchProductos);
+    });
+</script>
 </head>
 <body class="bg-custom-dark">
     <!-- Header con diseño sofisticado -->
@@ -82,7 +88,7 @@
         <div class="flex flex-wrap justify-center gap-6 mb-12">
             <div class="w-full sm:w-1/3 lg:w-1/4">
                 <select id="categoria" class="block w-full p-4 bg-black bg-opacity-70 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
-                    <option value="">Selecciona una Categoría</option>
+                    <option value="">Selecciona una Categoría(Todo)</option>
                     @foreach($categorias as $categoria)
                         <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                     @endforeach
@@ -93,11 +99,7 @@
                 <input type="text" id="nombre" placeholder="Buscar por nombre" class="block w-full p-4 bg-black bg-opacity-70 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
             </div>
 
-            <div class="w-full sm:w-1/3 lg:w-1/4 flex justify-center items-center">
-                <button id="buscar" class="w-full px-4 py-4 bg-accent text-white rounded-lg hover:bg-opacity-80 transition duration-300">
-                    Buscar
-                </button>
-            </div>
+
         </div>
 
         <!-- Lista de productos -->

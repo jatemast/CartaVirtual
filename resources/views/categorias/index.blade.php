@@ -59,7 +59,7 @@
                                 @else
                                     <ul class="list-disc list-inside">
                                         @foreach($categoria->productos as $producto)
-                                            <li>{{ $producto->nombre }} 
+                                            <li>{{ $producto->nombre }}
                                         @endforeach
                                     </ul>
                                 @endif

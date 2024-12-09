@@ -25,6 +25,12 @@ class ProductosController extends Controller
 
         return view('productos.create', compact('categorias')); // Pasas las categorías a la vista
     }
+// Mostrar los detalles de un producto
+public function show($id)
+{
+    $producto = Producto::with('categoria')->findOrFail($id);
+    return view('productos.show', compact('producto'));
+}
 
 
 
@@ -75,17 +81,17 @@ class ProductosController extends Controller
 
         $producto->save();
 
-        return redirect()->back()->with('success', 'Producto actualizado exitosamente.');
+        return redirect()->route('productos.index')->with('success', 'Producto actualizado exitosamente.');
+
     }
 
-    // Eliminar un producto
     public function destroy($id)
-    {
-        $producto = Producto::findOrFail($id);
-        $producto->delete();
+{
+    $producto = Producto::findOrFail($id);
+    $producto->delete();
 
-        return redirect()->back()->with('success', 'Producto eliminado exitosamente.');
-    }
+    return redirect()->route('productos.index')->with('success', 'Producto eliminado exitosamente.');
+}
 
 
     // Filtrar productos por AJAX

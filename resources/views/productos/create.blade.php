@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Productos - Brioche</title>
+    <title>Crear Producto</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
@@ -19,21 +18,27 @@
             backdrop-filter: blur(10px);
             background-color: rgba(22, 33, 62, 0.8);
         }
+        .product-img-preview {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+        }
     </style>
 </head>
 <x-sidebar />
 
 <body class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8 form-container p-10 rounded-2xl shadow-2xl">
-
         <div>
             <h2 class="text-center text-4xl font-extrabold text-white tracking-wider">
-                Registro de Producto
+                Crear Nuevo Producto
             </h2>
             <p class="mt-2 text-center text-sm text-gray-300">
-                Ingresa los detalles de tu nueva bebida
+                Ingresa los detalles del nuevo producto
             </p>
         </div>
+
         <form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
             <div class="rounded-md shadow-sm -space-y-px">
@@ -63,12 +68,13 @@
                 <div class="mb-4">
                     <label for="foto" class="block text-sm font-medium text-gray-200">Foto del Producto</label>
                     <div class="flex items-center">
-                        <input id="foto" name="foto" type="file" accept="image/*" class="hidden">
+                        <input id="foto" name="foto" type="file" accept="image/*" onchange="previewImage(event)" class="hidden">
                         <label for="foto" class="cursor-pointer flex items-center space-x-2 text-sm text-gray-300">
                             <i class="fas fa-camera text-accent"></i>
                             <span>Seleccionar archivo</span>
                         </label>
                     </div>
+                    <img id="foto-preview" class="product-img-preview" alt="Previsualización de la imagen">
                 </div>
             </div>
 
@@ -88,45 +94,30 @@
     </div>
 
     <script>
-        // Optional: Add some client-side validation
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const nombre = document.getElementById('nombre');
-            const precio = document.getElementById('precio');
-            const categoria = document.getElementById('categoria_id');
+        function previewImage(event) {
+            const preview = document.getElementById('foto-preview');
+            const file = event.target.files[0];
 
-            if (!nombre.value.trim()) {
-                e.preventDefault();
-                nombre.classList.add('border-red-500');
-                alert('Por favor, ingrese el nombre del producto');
-                return;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block'; // Mostrar la previsualización
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none'; // Ocultar si no se seleccionó imagen
             }
+        }
 
-            if (precio.value <= 0) {
-                e.preventDefault();
-                precio.classList.add('border-red-500');
-                alert('El precio debe ser mayor a 0');
-                return;
-            }
-
-            if (!categoria.value) {
-                e.preventDefault();
-                categoria.classList.add('border-red-500');
-                alert('Por favor, seleccione una categoría');
-                return;
-            }
-        });
+        @if(session('success'))
+            Swal.fire({
+                title: '¡Éxito!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            });
+        @endif
     </script>
-
-<script>
-     @if(session('success'))
-        Swal.fire({
-            title: '¡Éxito!',
-            text: '{{ session('success') }}',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-        });
-    @endif
-</script>
-
 </body>
 </html>

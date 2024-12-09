@@ -22,7 +22,7 @@ Route::get('/', [ProductosController::class, 'index'])->name('productos.index');
 Route::post('/productos/filter', [ProductosController::class, 'filter'])->name('productos.filter');
 Route::post('/productos', [ProductosController::class, 'store'])->middleware('auth')->name('productos.store');
 Route::get('/productos/{id}/editar', [ProductosController::class, 'edit'])->name('productos.edit');
-
+Route::get('/productos/{id}', [ProductosController::class, 'show'])->name('productos.show');
 Route::put('/productos/{id}', [ProductosController::class, 'update'])->middleware('auth')->name('productos.update');
 Route::delete('/productos/{id}', [ProductosController::class, 'destroy'])->middleware('auth')->name('productos.destroy');
 
