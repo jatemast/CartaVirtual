@@ -13,10 +13,12 @@ class ProductosController extends Controller
     public function index()
     {
         $categorias = Categoria::all(); // Obtienes todas las categorías
-        $productos = Producto::with('categoria')->get(); // Obtienes los productos con sus categorías
+        // Obtienes los productos con sus categorías y los paginas (10 productos por página)
+        $productos = Producto::with('categoria')->paginate(2);
 
         return view('productos.index', compact('categorias', 'productos')); // Pasas ambas variables a la vista
     }
+
     // Mostrar formulario para crear un nuevo producto
 
     public function create()

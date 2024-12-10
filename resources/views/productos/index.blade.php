@@ -98,8 +98,6 @@
             <div class="w-full sm:w-1/3 lg:w-1/4">
                 <input type="text" id="nombre" placeholder="Buscar por nombre" class="block w-full p-4 bg-black bg-opacity-70 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
             </div>
-
-
         </div>
 
         <!-- Lista de productos -->
@@ -111,6 +109,11 @@
                         <h3 class="text-2xl font-bold text-accent">{{ $producto->nombre }}</h3>
                         <p class="text-lg text-white mt-2">Precio: ${{ $producto->precio }}</p>
                         <p class="text-sm text-gray-400 mt-1">Categoría: {{ $producto->categoria->nombre }}</p>
+                        <div class="flex flex-col space-y-2 mt-4">
+                            <a href="{{ route('productos.show', $producto->id) }}" class="btn-pro">Ver más</a>
+                            <a href="{{ route('productos.edit', $producto->id) }}" class="btn-pro">Editar</a>
+                            <a href="{{ route('productos.destroy', $producto->id) }}" class="btn-pro">Eliminar</a>
+                        </div>
                     </div>
                 </div>
             @endforeach
@@ -121,6 +124,10 @@
                 No se encontraron productos registrados.
             </div>
         @endif
+        <!-- Paginación -->
+        <div class="mt-8">
+            {{ $productos->links() }}
+        </div>
     </div>
 
     <!-- Footer -->
@@ -180,6 +187,11 @@
                                 <h3 class="text-2xl font-bold text-accent">${producto.nombre}</h3>
                                 <p class="text-lg text-white mt-2">Precio: $${producto.precio}</p>
                                 <p class="text-sm text-gray-400 mt-1">Categoría: ${producto.categoria.nombre}</p>
+                                <div class="flex flex-col space-y-2 mt-4">
+                                    <a href="/productos/${producto.id}" class="btn-pro">Ver más</a>
+                                    <a href="/productos/${producto.id}/edit" class="btn-pro">Editar</a>
+                                    <a href="/productos/${producto.id}/destroy" class="btn-pro">Eliminar</a>
+                                </div>
                             </div>
                         </div>
                     `;
@@ -193,3 +205,7 @@
     </script>
 </body>
 </html>
+<!-- Paginación -->
+<div class="mt-8">
+    {{ $productos->links() }}
+</div>

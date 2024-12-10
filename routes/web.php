@@ -28,7 +28,7 @@ Route::delete('/productos/{id}', [ProductosController::class, 'destroy'])->middl
 
 
 
-
+  
 //Rutas categoris
 
  // Ruta para ver todas las categorías
