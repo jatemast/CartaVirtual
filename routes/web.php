@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::delete('/productos/{id}', [ProductosController::class, 'destroy'])->middl
 
 
 
-  
+
 //Rutas categoris
 
  // Ruta para ver todas las categorías
@@ -38,6 +39,14 @@ Route::post('/categorias', [CategoriaController::class, 'store'])->name('categor
 Route::get('/categorias/{id}/edit', [CategoriaController::class, 'edit'])->name('categorias.edit');
 Route::put('/categorias/{id}', [CategoriaController::class, 'update'])->name('categorias.update');
 Route::delete('/categorias/{id}', [CategoriaController::class, 'destroy'])->name('categorias.destroy');
+
+
+
+
+ // Rutas para la gestión de roles
+Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+Route::post('/roles/assign/{user}', [RoleController::class, 'assignRole'])->name('roles.assign');
+Route::delete('/roles/remove/{user}', [RoleController::class, 'removeRole'])->name('roles.remove');
 
 
 
