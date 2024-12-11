@@ -64,7 +64,9 @@
                     <li><a href="#" class="text-lg font-semibold hover:text-accent transition duration-300">Menú</a></li>
                     <li><a href="#" class="text-lg font-semibold hover:text-accent transition duration-300">Nosotros</a></li>
                     <li><a href="#" class="text-lg font-semibold hover:text-accent transition duration-300">Contacto</a></li>
-                    <li><a href="{{ route('dashboard') }}" class="text-lg font-semibold hover:text-accent transition duration-300">Administrar carta de licores</a></li>
+                    @role('admin')
+                        <li><a href="{{ route('dashboard') }}" class="text-lg font-semibold hover:text-accent transition duration-300">Administrar carta de licores</a></li>
+                    @endrole
                     <li>
                         <a href="https://www.instagram.com" target="_blank" class="hover:opacity-75 transition">
                             <img src="{{ asset('redessociales/logoinstagram.webp') }}" alt="Instagram" class="h-6 w-6">
