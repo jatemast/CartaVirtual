@@ -8,7 +8,9 @@
     <div class="min-h-screen py-12" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset('wallpaper/wallpaper.jpg') }}'); background-size: cover; background-position: center; background-attachment: fixed;">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-sidebar />
+                @if(auth()->user()->hasRole('admin'))
+                    <x-sidebar />
+                @endif
             </div>
         </div>
     </div>
