@@ -41,9 +41,19 @@
         .btn:hover {
             background-color: #0056b3;
         }
+        .product-card {
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo ligeramente blanco */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+        }
     </style>
 </head>
-<x-sidebar />
+@role('admin')
+    <x-sidebar />
+@endrole
 
 <body class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8 form-container p-10 rounded-2xl shadow-2xl">
@@ -63,10 +73,11 @@
 
             <!-- Información de la categoría -->
             <p class="text-sm text-gray-500 mt-2">Categoría: {{ $producto->categoria->nombre }}</p>
-
+            <!-- Descripción del producto -->
+            <p class="text-md text-gray-700 mt-4">{{ $producto->descripcion }}</p>
             <!-- Botón para regresar -->
             <div class="text-center mt-6">
-                <a href="{{ route('productos.index') }}" class="btn">Volver a la lista de productos</a>
+                <a href="{{ route('productos.index') }}" class="btn block sm:inline-block w-full sm:w-auto text-center">Volver a la lista de productos</a>
             </div>
         </div>
 

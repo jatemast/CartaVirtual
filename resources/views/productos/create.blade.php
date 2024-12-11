@@ -53,7 +53,11 @@
                     <input id="precio" name="precio" type="number" step="0.01" required
                         class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-700 bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent">
                 </div>
-
+                <div class="mb-4">
+                    <label for="descripcion" class="block text-sm font-medium text-gray-200">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" rows="4"
+                        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-700 bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent"></textarea>
+                </div>
                 <div class="mb-4">
                     <label for="categoria_id" class="block text-sm font-medium text-gray-200">Categoría</label>
                     <select id="categoria_id" name="categoria_id" required

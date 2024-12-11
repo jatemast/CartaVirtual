@@ -44,6 +44,7 @@ public function show($id)
             'precio' => 'required|numeric',
             'foto' => 'nullable|image',
             'categoria_id' => 'required|exists:categorias,id',
+            'descripcion' => 'nullable|string',
         ]);
 
         $producto = new Producto($request->all());
@@ -71,6 +72,7 @@ public function show($id)
             'precio' => 'required|numeric',
             'foto' => 'nullable|image',
             'categoria_id' => 'required|exists:categorias,id',
+            'descripcion' => 'nullable|string',
         ]);
 
         $producto = Producto::findOrFail($id);

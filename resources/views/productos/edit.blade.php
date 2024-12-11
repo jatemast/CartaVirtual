@@ -81,14 +81,21 @@
                     <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
                 @enderror
             </div>
+
+            <textarea id="descripcion" name="descripcion" rows="3"
+            class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-700 bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+            {{ old('descripcion', $producto->descripcion) }}
+        </textarea>
             <button type="submit"
                 class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-105">
                 Actualizar Producto
             </button>
         </form>
+
+
         <div class="text-center">
             <a href="{{ route('productos.index') }}" class="text-sm text-gray-300 hover:text-white transition duration-300">
-                Volver al listado de productos
+            Volver al listado de productos
             </a>
         </div>
     </div>

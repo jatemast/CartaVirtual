@@ -59,20 +59,25 @@
                 <img src="{{ asset('logo.jpeg') }}" alt="Logo" class="h-16 w-auto rounded-full mr-6 border-2 border-gold">
                 <h1 class="text-3xl font-bold text-white tracking-wider">Licores cartagena</h1>
             </div>
+
+
             <nav>
+                <div class="py-16"></div>
+
                 <ul class="flex space-x-6 text-white">
-                    <li><a href="#" class="text-lg font-semibold hover:text-accent transition duration-300">Menú</a></li>
-                    <li><a href="#" class="text-lg font-semibold hover:text-accent transition duration-300">Nosotros</a></li>
-                    <li><a href="#" class="text-lg font-semibold hover:text-accent transition duration-300">Contacto</a></li>
+                    <li class="hidden lg:inline-block"><a href="#" class="text-lg font-semibold hover:text-accent transition duration-300">Menú</a></li>
+                    <li class="hidden lg:inline-block"><a href="#" class="text-lg font-semibold hover:text-accent transition duration-300">Nosotros</a></li>
+                    <li class="hidden lg:inline-block"><a href="#" class="text-lg font-semibold hover:text-accent transition duration-300">Contacto</a></li>
                     @role('admin')
-                        <li><a href="{{ route('dashboard') }}" class="text-lg font-semibold hover:text-accent transition duration-300">Administrar carta de licores</a></li>
+
+                        <li class="absolute top-6 right-6"><a href="{{ route('dashboard') }}" class="text-lg font-semibold hover:text-accent transition duration-300">Administrar carta de licores</a></li>
                     @endrole
-                    <li>
+                    <li class="hidden lg:inline-block">
                         <a href="https://www.instagram.com" target="_blank" class="hover:opacity-75 transition">
                             <img src="{{ asset('redessociales/logoinstagram.webp') }}" alt="Instagram" class="h-6 w-6">
                         </a>
                     </li>
-                    <li>
+                    <li class="hidden lg:inline-block">
                         <a href="https://www.whatsapp.com" target="_blank" class="hover:opacity-75 transition">
                             <img src="{{ asset('redessociales/whatsaap.webp') }}" alt="WhatsApp" class="h-6 w-6">
                         </a>
@@ -111,10 +116,16 @@
                         <h3 class="text-2xl font-bold text-accent">{{ $producto->nombre }}</h3>
                         <p class="text-lg text-white mt-2">Precio: ${{ $producto->precio }}</p>
                         <p class="text-sm text-gray-400 mt-1">Categoría: {{ $producto->categoria->nombre }}</p>
+                        <p class="text-sm text-gray-400 mt-1">Descripción: {{ $producto->descripcion }}</p>
+
                         <div class="flex flex-col space-y-2 mt-4">
                             <a href="{{ route('productos.show', $producto->id) }}" class="btn-pro">Ver más</a>
+                            @role('admin')
                             <a href="{{ route('productos.edit', $producto->id) }}" class="btn-pro">Editar</a>
+                            @endrole
+                            @role('admin')
                             <a href="{{ route('productos.destroy', $producto->id) }}" class="btn-pro">Eliminar</a>
+                            @endrole
                         </div>
                     </div>
                 </div>
