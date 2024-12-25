@@ -124,7 +124,16 @@
                             <a href="{{ route('productos.edit', $producto->id) }}" class="btn-pro">Editar</a>
                             @endrole
                             @role('admin')
-                            <a href="{{ route('productos.destroy', $producto->id) }}" class="btn-pro">Eliminar</a>
+                            <a href="{{ route('productos.destroy', $producto->id) }}" class="btn-pro"
+                                onclick="event.preventDefault();
+                                if(confirm('¿Estás seguro que quieres eliminar este producto?')) {
+                                    document.getElementById('delete-form-{{ $producto->id }}').submit();
+                                }">Eliminar</a>
+
+                            <form id="delete-form-{{ $producto->id }}" action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display: none;">
+                                 @csrf
+                                 @method('DELETE')
+                            </form>
                             @endrole
                         </div>
                     </div>
@@ -222,3 +231,4 @@
 <div class="mt-8">
     {{ $productos->links() }}
 </div>
+|
