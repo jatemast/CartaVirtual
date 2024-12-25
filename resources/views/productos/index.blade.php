@@ -122,8 +122,8 @@
                             <a href="{{ route('productos.show', $producto->id) }}" class="btn-pro">Ver más</a>
                             @role('admin')
                             <a href="{{ route('productos.edit', $producto->id) }}" class="btn-pro">Editar</a>
-                            @endrole
-                            @role('admin')
+
+
                             <a href="{{ route('productos.destroy', $producto->id) }}" class="btn-pro"
                                 onclick="event.preventDefault();
                                 if(confirm('¿Estás seguro que quieres eliminar este producto?')) {
@@ -211,8 +211,10 @@
                                 <p class="text-sm text-gray-400 mt-1">Categoría: ${producto.categoria.nombre}</p>
                                 <div class="flex flex-col space-y-2 mt-4">
                                     <a href="/productos/${producto.id}" class="btn-pro">Ver más</a>
+                                    @role('admin')
                                     <a href="/productos/${producto.id}/edit" class="btn-pro">Editar</a>
                                     <a href="/productos/${producto.id}/destroy" class="btn-pro">Eliminar</a>
+                                    @endrole
                                 </div>
                             </div>
                         </div>
