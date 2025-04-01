@@ -54,7 +54,7 @@ public function update(Request $request, $id)
     $categoria->nombre = $request->nombre;
     $categoria->save();
 
-    return redirect()->route('categorias.index')->with('success', 'Categoría actualizada con éxito');
+    return redirect()->route('categorias.index')->with('success', 'Categoría actualizada con éxito'); 
 }
 
 public function destroy($id)
